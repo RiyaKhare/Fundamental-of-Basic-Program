@@ -1,0 +1,37 @@
+//Spiral Matrix
+Given an m x n matrix, return all elements of the matrix in spiral order.
+//Constraints:
+
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 10
+-100 <= matrix[i][j] <= 100
+
+
+//Code-
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        int m=matrix.length,n=matrix[0].length,sr=0,sc=0,er=m-1,ec=n-1,length=n*m;
+        List<Integer> ans=new ArrayList();
+        while(ans.size()<length)
+        {
+            for(int i=sc;ans.size()<length&&i<=ec;i++)
+                ans.add(matrix[sr][i]);
+            if(sr<er)
+                sr++;
+            for(int i=sr;ans.size()<length&&i<=er;i++)
+                ans.add(matrix[i][ec]);
+            if(sc<ec)
+                ec--;
+            for(int i=ec;ans.size()<length&&i>=sc;i--)
+                ans.add(matrix[er][i]);
+            if(sr<er)
+                er--;
+            for(int i=er;ans.size()<length&&i>=sr;i--)
+                ans.add(matrix[i][sc]);
+            if(sc<ec)
+                sc++;  
+        }
+        return ans;
+    }
+}
